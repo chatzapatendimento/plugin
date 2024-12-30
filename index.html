@@ -130,9 +130,7 @@ body {
     margin: 0;
     background-color: #f9f9f9;
 }
-body {
-    background: transparent !important; /* Torna o fundo do chat transparente */
-}
+
 /* Contêiner do Chat Call */
 #chat-call {
     position: fixed;
@@ -689,6 +687,91 @@ body.typebot-active {
         opacity: 1;
     }
 }
+@media (max-width: 480px) {
+    /* Ajustar o balão de mensagem */
+     #chat-call {
+        position: fixed; /* Fixa o Chat Call na tela */
+        bottom: 65px; /* Define 40px de distância do rodapé */
+        right: 15px; /* Mantém 20px da lateral direita */
+        display: flex; /* Garante o alinhamento interno */
+        align-items: center; /* Alinha o conteúdo verticalmente */
+        z-index: 10000; /* Garante que o Chat Call fique acima de outros elementos */
+    }
+}
+    
+    .chat-bubble {
+        max-width: 75%; /* Reduz a largura do balão */
+        font-size: 16px; /* Ajusta o tamanho da fonte */
+        padding: 10px 15px; /* Espaçamento interno */
+        border-radius: 6px; /* Bordas arredondadas mais suaves */
+        margin-left: 8px; /* Espaço para afastar do avatar */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Sombra mais sutil */
+    }
+
+    /* Ajustar o avatar */
+    .profile-container {
+        width: 60px; /* Tamanho menor do avatar */
+        height: 60px;
+    }
+
+    .profile-pic {
+        width: 55px; /* Ajuste da imagem no avatar */
+        height: 55px;
+    }
+
+    /* Ajustar o indicador de status online */
+    .profile-container::after {
+        width: 8px; /* Indicador menor */
+        height: 8px;
+        bottom: 5px; /* Ajuste de posição */
+        right: 5px; /* Ajuste de posição */
+    }
+
+    /* Ajustar o contêiner geral do Chat Call */
+    #chat-call {
+        display: flex;
+        align-items: center;
+        gap: 10px; /* Espaço entre o balão e o avatar */
+    }
+}
+@media (max-width: 480px) {
+    #chat-now {
+        position: fixed; /* Fixa o Chat Now na tela */
+        bottom: 0; /* Alinha na parte inferior */
+        left: 0; /* Remove posicionamento à direita */
+        width: 100%; /* Garante que ocupe toda a largura */
+        height: 90%; /* Define altura de 90% da tela */
+        background-color: #fff; /* Fundo branco */
+        border-radius: 12px 12px 0 0; /* Bordas arredondadas no topo */
+        box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.15); /* Sombra sutil */
+        z-index: 10000; /* Certifica que esteja acima de outros elementos */
+        margin: 0; /* Remove margens */
+        padding: 0; /* Remove espaçamentos internos */
+        box-sizing: border-box; /* Inclui padding e borda no cálculo da largura */
+    }
+    .chat-body {
+        padding: 20px; /* Ajuste do espaçamento interno */
+        background-color: #f9f9f9; /* Fundo do contêiner */
+        overflow-y: auto; /* Adiciona rolagem vertical, se necessário */
+        max-height: 75%; /* Aumenta o comprimento máximo */
+        height: calc(100% - 60px); /* Ajusta dinamicamente a altura */
+        width: 100%; /* Garante que o contêiner ocupe toda a largura */
+        box-sizing: border-box; /* Inclui padding e bordas no cálculo da largura */
+    }
+}
+
+    .chat-body {
+        padding: 15px; /* Ajusta espaçamento interno */
+        overflow-y: auto; /* Adiciona rolagem se necessário */
+        max-height: calc(100% - 50px); /* Altura restante após o cabeçalho */
+    }
+
+    .chat-header {
+        width: 100%; /* Ocupa toda a largura */
+        box-sizing: border-box; /* Garante largura correta */
+    }
+}
+
 
 </style>
 <script>
@@ -910,10 +993,10 @@ setTimeout(() => {
         if (window.Typebot) {
             console.log("Inicializando Typebot...");
             Typebot.initBubble({
-                typebot: "my-typebot-2usgp7j", // Substitua pelo seu ID do Typebot
+                typebot: "lead-magnet-3a9mx2z", // Substitua pelo seu ID do Typebot
                 theme: {
                     button: {
-                        backgroundColor: "#B30400",
+                        backgroundColor: "#075E54",
                         customIconSrc: "https://s3.typebot.io/public/workspaces/cm1phfshl003t3eii8w05yvqa/typebots/cm2uxrjgl000114hkqz5xo2ta/blocks/phehu4kfk6fvxk7f0qr2h17y?v=1734639126382",
                         size: "large"
                     }
@@ -928,19 +1011,24 @@ setTimeout(() => {
 // Adicionar evento de clique ao Chat Call para abrir o Typebot
 if (chatChamada) {
     chatChamada.addEventListener('click', () => {
-        console.log("Chat Call clicado!");
-        initializeTypebot(); // Inicializa o Typebot
+        console.log("Chat Call clicado! Redirecionando para o novo link...");
+        window.location.href = 'https://chatzapatendimento.github.io/cabe-alhorevis-onovo/'; // Substitua pelo link desejado
     });
 }
 
+
     // Botão "Sim, começar agora" para inicializar o Typebot
-    const startButton = document.querySelector('.start-btn');
-    if (startButton) {
-        startButton.addEventListener('click', () => {
-            console.log("Botão 'Sim, começar agora' clicado!");
-            initializeTypebot(); // Inicializa o Typebot
-        });
-    }
+ 
+        // Seleção do botão "Sim, testar agora"
+        const testNowButton = document.querySelector('.start-btn'); // Certifique-se de que o botão possui a classe .start-btn
+
+        if (testNowButton) {
+            testNowButton.addEventListener('click', () => {
+                console.log("Botão 'Sim, testar agora' clicado!");
+                window.location.href = 'https://chatzapatendimento.github.io/cabe-alhorevis-onovo/'; // Link do Typebot
+            });
+        }
+
 
     // Restaurar comportamento após fechar o Typebot
     if (window.Typebot) {
